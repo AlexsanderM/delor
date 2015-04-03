@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Delor::Application.config.secret_key_base = '2e650ff3f29a37edc52ae08a4450e9adaeedaec3a5b2f369981312c0b87b7832f8bbd184357c0180437bc1eb470fbcfe3a38b70a019d9af69c5bfb38f8816a8c'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Delor::Application.config.secret_key_base = secure_token
