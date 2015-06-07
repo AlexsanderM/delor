@@ -11,7 +11,7 @@
 <div class="navbar-wrapper">
               <div class="container">
               <%= render 'layouts/header' %>
-          <div class="center hero-unit">
+           <div class="center hero-unit">
  
          <%= yield %>
          <footer class="footer">
@@ -25,6 +25,8 @@
   </nav>
 </footer>
 </div>
+<ul>
+<%= debug(params) if Rails.env.development? %></ul>
 </div>
 </body>
 </html>

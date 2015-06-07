@@ -1,0 +1,12 @@
+<% if @user.errors.any? %>
+  
+  <ul>
+    <% @user.errors.full_messages.each do |q|%>
+    
+      <ul><%= q %></ul>
+     
+ <% end %>
+  </ul>
+     
+<% end %>
+    
